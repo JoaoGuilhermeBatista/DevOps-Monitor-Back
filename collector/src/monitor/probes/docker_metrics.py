@@ -78,9 +78,13 @@ class DockerDatabaseStatsProbe:
 
     def _get_client(self) -> DockerClient:
         if self._client is None:
+            import os
+
             import docker
 
-            self._client = docker.APIClient(version="1.41", timeout=8)
+            self._client = docker.APIClient(
+                base_url=os.environ.get("DOCKER_HOST") or None, version="1.44", timeout=8
+            )
         return self._client
 
     def collect(self) -> ProbeResult:

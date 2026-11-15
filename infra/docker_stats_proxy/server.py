@@ -89,7 +89,7 @@ def demultiplex_stdout(payload: bytes) -> bytes:
 
 def postfix_queue_output() -> bytes:
     """Run one fixed, non-mutating command inside the fixed Postfix container."""
-    version = "/v1.41"
+    version = "/v1.44"
     create_body = json.dumps(
         {
             "AttachStdout": True,
@@ -144,7 +144,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_error(403)
                 return
             docker_path = (
-                f"/v1.41/containers/devops-monitor-postfix/logs?"
+                f"/v1.44/containers/devops-monitor-postfix/logs?"
                 f"stdout=1&stderr=0&timestamps=1&since={since}&follow=False&tail=all"
             )
             if not allowed_postfix_logs_path(docker_path):

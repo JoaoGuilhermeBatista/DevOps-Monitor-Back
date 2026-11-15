@@ -11,6 +11,7 @@ services:
 
   nginx:
     build: ./infra/nginx
+    restart: unless-stopped
     depends_on:
       demo-app: { condition: service_healthy }
     ports: ["127.0.0.1:8080:80"]
@@ -46,6 +47,7 @@ services:
 
   coredns:
     build: ./infra/coredns
+    restart: unless-stopped
     command: ["-conf", "/etc/coredns/Corefile"]
     ports: ["127.0.0.1:1053:53/udp", "127.0.0.1:1053:53/tcp"]
     volumes:
@@ -62,6 +64,7 @@ services:
 
   mailhog:
     image: mailhog/mailhog:v1.0.1
+    restart: unless-stopped
     ports: ["127.0.0.1:8025:8025"]
     networks: [lab]
     healthcheck:
@@ -73,10 +76,14 @@ services:
   postfix:
     container_name: devops-monitor-postfix
     build: ./infra/postfix
+    restart: unless-stopped
     depends_on:
       mailhog: { condition: service_healthy }
     environment:
       RELAYHOST: "[mailhog]:1025"
+      # A imagem boky/postfix recusa iniciar sem esta lista (domínios dos remetentes aceitos).
+      ALLOWED_SENDER_DOMAINS: "devops.local lab.local"
+      POSTFIX_smtpd_recipient_restrictions: "permit_mynetworks,reject_unauth_destination"
     ports: ["127.0.0.1:2525:25"]
     networks: [lab]
     healthcheck:
@@ -112,8 +119,9 @@ services:
     depends_on:
       nginx: { condition: service_healthy }
       postgres: { condition: service_healthy }
-      coredns: { condition: service_healthy }
-      postfix: { condition: service_healthy }
+      # Serviços monitorados: o coletor não espera ficarem saudáveis, pois detectar queda é o trabalho dele.
+      coredns: { condition: service_started }
+      postfix: { condition: service_started }
       docker-stats-proxy: { condition: service_healthy }
 
   docker-stats-proxy:

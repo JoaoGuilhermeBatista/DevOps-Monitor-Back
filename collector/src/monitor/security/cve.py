@@ -157,10 +157,11 @@ class CveScanner:
                         for c in cves
                     ],
                 )
-            except (HTTPError, URLError, OSError, ValueError, KeyError) as error:
+            except Exception as error:
                 LOGGER.error(
                     "cve scan failed",
-                    extra={"probe": f"cve:{service_id}", "error_type": type(error).__name__},
+                    extra={"probe": f"cve:{service_id}", "error_type": type(error).__name__
+                    + (f"_{error.code}" if isinstance(error, HTTPError) else "")},
                 )
                 continue
             scanned.append(service_id)

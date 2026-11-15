@@ -61,7 +61,7 @@ export function MetricChart({
               {segment.length > 1 && <polyline points={segment.map(({ x, y }) => `${x},${y}`).join(" ")} className="chart-line" />}
               {segment.map(({ x, y, source }) => (
                 <circle cx={x} cy={y} r="2.4" className="chart-point" key={source.bucket}>
-                  <title>{new Date(source.bucket).toISOString()} · {source.value} {unit} · {source.sample_count} amostras</title>
+                  <title>{`${new Date(source.bucket).toISOString()} · ${Number((source.value as number).toPrecision(4))} ${unit} · ${source.sample_count} amostras`}</title>
                 </circle>
               ))}
             </g>
