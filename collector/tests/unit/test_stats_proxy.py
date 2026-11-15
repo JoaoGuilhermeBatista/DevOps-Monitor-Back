@@ -14,18 +14,18 @@ from infra.docker_stats_proxy.server import (
 class StatsProxyAllowlistTests(unittest.TestCase):
     def test_allows_only_fixed_container_non_stream_stats_get_path(self) -> None:
         self.assertTrue(
-            allowed_stats_path("/v1.41/containers/devops-monitor-postgres/stats?stream=false")
+            allowed_stats_path("/v1.44/containers/devops-monitor-postgres/stats?stream=false")
         )
-        self.assertTrue(allowed_stats_path("/v1.41/containers/devops-monitor-postgres/stats"))
+        self.assertTrue(allowed_stats_path("/v1.44/containers/devops-monitor-postgres/stats"))
 
     def test_rejects_other_docker_api_operations(self) -> None:
         rejected = (
-            "/v1.41/containers/json",
-            "/v1.41/containers/devops-monitor-postgres/json",
-            "/v1.41/containers/devops-monitor-postgres/archive?path=/",
-            "/v1.41/containers/devops-monitor-postgres/stats?stream=true",
-            "/v1.41/containers/devops-monitor-postgres/stats?stream=false&stream=true",
-            "/v1.41/containers/other/stats?stream=false",
+            "/v1.44/containers/json",
+            "/v1.44/containers/devops-monitor-postgres/json",
+            "/v1.44/containers/devops-monitor-postgres/archive?path=/",
+            "/v1.44/containers/devops-monitor-postgres/stats?stream=true",
+            "/v1.44/containers/devops-monitor-postgres/stats?stream=false&stream=true",
+            "/v1.44/containers/other/stats?stream=false",
             "/containers/devops-monitor-postgres/stats?stream=false",
         )
         for path in rejected:
@@ -34,7 +34,7 @@ class StatsProxyAllowlistTests(unittest.TestCase):
 
     def test_postfix_logs_route_is_fixed_to_stdout_and_container(self) -> None:
         allowed = (
-            "/v1.41/containers/devops-monitor-postfix/logs?stdout=1&stderr=0"
+            "/v1.44/containers/devops-monitor-postfix/logs?stdout=1&stderr=0"
             "&timestamps=1&since=123&follow=False&tail=all"
         )
         self.assertTrue(allowed_postfix_logs_path(allowed))
@@ -62,13 +62,13 @@ class StatsProxyAllowlistTests(unittest.TestCase):
         create_call = request.call_args_list[0]
         self.assertEqual(
             create_call.args[:2],
-            ("POST", "/v1.41/containers/devops-monitor-postfix/exec"),
+            ("POST", "/v1.44/containers/devops-monitor-postfix/exec"),
         )
         self.assertEqual(
             request.call_args_list[1],
-            call("POST", "/v1.41/exec/abc123/start", b'{"Detach":false,"Tty":true}'),
+            call("POST", "/v1.44/exec/abc123/start", b'{"Detach":false,"Tty":true}'),
         )
-        self.assertEqual(request.call_args_list[2], call("GET", "/v1.41/exec/abc123/json"))
+        self.assertEqual(request.call_args_list[2], call("GET", "/v1.44/exec/abc123/json"))
         create_payload = json.loads(create_call.args[2])
         self.assertEqual(create_payload["Cmd"], ["postqueue", "-j"])
         self.assertEqual(create_payload["User"], "postfix")
