@@ -1,443 +1,515 @@
-# ◈ DevOps Monitor
+# ⚡ DevOps Monitor
 
-### MONITOR YOUR INFRASTRUCTURE. UNDERSTAND EVERY SIGNAL.
+### Plataforma de Monitoramento, Observabilidade e Segurança de Infraestrutura
 
-**Uma plataforma inteligente para monitoramento, observabilidade e segurança de serviços de rede.**
+Monitoramento centralizado de serviços Web, Banco de Dados, DNS e SMTP, com coleta automatizada de métricas, análise de eventos, detecção de ameaças e visualização em tempo real.
 
-Centralizando métricas, identificando anomalias e transformando dados operacionais em informações estratégicas.
-
-<p align="left">
-  <img src="https://img.shields.io/badge/STATUS-EM%20DESENVOLVIMENTO-8B5CF6?style=for-the-badge" alt="Status">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
-  <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="Chart.js">
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.12-blue?logo=python" />
+  <img src="https://img.shields.io/badge/Next.js-15-black?logo=next.js" />
+  <img src="https://img.shields.io/badge/TypeScript-5-blue?logo=typescript" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" />
+  <img src="https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker" />
+  <img src="https://img.shields.io/badge/Supabase-Database%20%7C%20Auth%20%7C%20Realtime-3FCF8E?logo=supabase" />
 </p>
 
-[Visão geral](#-visão-geral) • [Funcionalidades](#-funcionalidades) • [Tecnologias](#-tecnologias) • [Arquitetura](#-arquitetura) • [Instalação](#-instalação) • [Roadmap](#-roadmap)
+<p align="center">
+  **Projeto acadêmico — Engenharia de Software | IDP**
+</p>
 
 ---
 
-## ◈ Visão geral
+## 📌 Sobre o projeto
 
-O **DevOps Monitor** é uma plataforma web desenvolvida para centralizar o monitoramento de serviços de rede, permitindo acompanhar disponibilidade, desempenho, métricas operacionais e indicadores de segurança por meio de dashboards interativos.
+O **DevOps Monitor** é uma plataforma de monitoramento, observabilidade e segurança desenvolvida para acompanhar o funcionamento de diferentes serviços que compõem uma infraestrutura de TI.
 
-A proposta é oferecer uma visão consolidada da infraestrutura monitorada, facilitando a identificação de falhas, degradações de desempenho e comportamentos potencialmente suspeitos.
+A proposta é centralizar informações operacionais em um único ambiente, permitindo acompanhar a disponibilidade dos serviços, identificar degradações de desempenho, analisar eventos e detectar comportamentos potencialmente maliciosos.
 
-A plataforma contará com módulos independentes de monitoramento, responsáveis por verificar periodicamente os serviços cadastrados, coletar métricas e encaminhar os resultados para processamento e armazenamento.
-
-Além disso, o sistema terá mecanismos de classificação de alertas e envio de notificações automáticas por e-mail, permitindo que situações críticas sejam identificadas e acompanhadas de maneira centralizada.
-
-> **Monitoramento inteligente. Infraestrutura confiável.**
-
-## 🎯 Objetivos do projeto
-
-- Desenvolver uma plataforma centralizada para monitoramento de serviços de rede.
-- Implementar dashboards interativos para visualização de métricas operacionais.
-- Monitorar disponibilidade e desempenho de diferentes serviços.
-- Implementar mecanismos de identificação e classificação de alertas.
-- Desenvolver notificações automáticas por e-mail.
-- Incorporar recursos adicionais de monitoramento de segurança.
-- Organizar a aplicação em módulos independentes e de fácil manutenção.
-- Aplicar conceitos de redes de computadores, desenvolvimento web, observabilidade e DevOps.
-
----
-
-## ✨ Funcionalidades
-
-As funcionalidades estão organizadas em módulos para facilitar o desenvolvimento e a evolução da plataforma.
-
-### 📊 Monitoramento de serviços
-
-A plataforma será responsável por acompanhar o funcionamento de diferentes serviços de rede, apresentando indicadores relevantes para cada categoria.
+A plataforma contempla quatro componentes principais:
 
 | Serviço | Indicadores monitorados |
 |---|---|
-| 🌐 **HTTP/HTTPS** | Disponibilidade, latência, requisições e erros |
-| 🗄️ **Database** | Disponibilidade, conexões, consultas e desempenho |
-| 🌍 **DNS** | Tempo de resolução, consultas e falhas |
-| ✉️ **SMTP** | Disponibilidade, latência e erros de comunicação |
+| 🌐 **Web** | Requisições por segundo, latência, erros HTTP, conexões e disponibilidade |
+| 🗄️ **Database** | Consultas, conexões, transações, consultas lentas e utilização de recursos |
+| 🌍 **DNS** | Tempo de resolução, falhas de consulta e volume de requisições |
+| ✉️ **SMTP** | Fila de mensagens, entregas, rejeições e latência de envio |
 
-### 📈 Dashboards interativos
+O projeto utiliza um coletor desenvolvido em Python para executar sondas de monitoramento e processar informações dos serviços. Os dados são persistidos no Supabase e disponibilizados por meio de um painel web desenvolvido com Next.js e TypeScript.
 
-A interface permitirá acompanhar as informações coletadas por meio de painéis individuais e de uma visão consolidada da infraestrutura.
+Além do monitoramento convencional, a solução incorpora mecanismos de detecção de anomalias, tentativas de força bruta, alterações em arquivos de configuração e vulnerabilidades conhecidas.
 
-Entre os recursos previstos estão:
+O ambiente de infraestrutura é reproduzido localmente com Docker Compose, permitindo realizar testes controlados, simular incidentes e observar o comportamento da plataforma diante de diferentes situações.
 
-- Dashboard geral com indicadores de todos os serviços.
-- Painéis individuais para cada serviço monitorado.
-- Gráficos de desempenho e histórico de métricas.
-- Indicadores de disponibilidade e estado operacional.
-- Tabelas com eventos e informações relevantes.
-- Atualização periódica das informações.
+## 🎯 Objetivos
 
-### 🚨 Sistema de alertas
+- Centralizar o monitoramento de diferentes serviços de infraestrutura.
+- Acompanhar disponibilidade e indicadores de desempenho.
+- Armazenar e consultar métricas históricas.
+- Identificar indisponibilidades e comportamentos anormais.
+- Detectar possíveis ameaças e alterações suspeitas.
+- Automatizar a identificação e o registro de incidentes.
+- Disponibilizar informações em um dashboard intuitivo.
+- Simular situações de falha e eventos de segurança em ambiente controlado.
 
-O sistema utilizará três níveis de classificação para representar as condições operacionais dos serviços.
+## 🏗️ Arquitetura do sistema
 
-| Nível | Estado | Descrição |
-|---|---|---|
-| 🟢 | **Normal** | Serviço operando dentro dos parâmetros esperados. |
-| 🟡 | **Atenção** | Identificação de degradação ou comportamento anormal. |
-| 🔴 | **Crítico** | Serviço indisponível ou condição crítica identificada. |
-
-Os alertas poderão gerar notificações automáticas por e-mail, de acordo com a gravidade do incidente.
-
-### 🔐 Monitoramento de segurança
-
-O módulo de segurança pretende ampliar a capacidade de observação da infraestrutura por meio da identificação de eventos potencialmente suspeitos.
-
-Funcionalidades previstas:
-
-- Identificação de anomalias no tráfego de rede.
-- Monitoramento de tentativas de autenticação malsucedidas.
-- Identificação de possíveis ataques de força bruta.
-- Detecção de alterações em arquivos de configuração.
-- Monitoramento de vulnerabilidades conhecidas.
-- Identificação de padrões de tráfego potencialmente associados a ataques de negação de serviço (DDoS).
-
-### ⚙️ Configurações
-
-A plataforma contará com uma área para gerenciamento dos parâmetros de monitoramento, incluindo configurações de serviços, atualização de métricas e preferências de alertas.
-
----
-
-## 🛠️ Tecnologias
-
-O projeto utiliza tecnologias voltadas ao desenvolvimento de aplicações web, processamento de dados e monitoramento de infraestrutura.
-
-### Backend
-
-<p>
-  <img src="https://skillicons.dev/icons?i=python,fastapi" alt="Python e FastAPI">
-</p>
-
-- **Python:** linguagem principal para implementação dos módulos de monitoramento e processamento.
-- **FastAPI:** desenvolvimento da API REST e comunicação entre os componentes.
-- **SQLite:** armazenamento inicial de métricas, eventos e informações operacionais.
-- **Pytest:** desenvolvimento de testes automatizados.
-
-### Frontend
-
-<p>
-  <img src="https://skillicons.dev/icons?i=html,css,js" alt="HTML, CSS e JavaScript">
-</p>
-
-- **HTML5:** estrutura das páginas e componentes da interface.
-- **CSS3:** identidade visual, estilização e responsividade.
-- **JavaScript:** interatividade e integração com o backend.
-- **Chart.js:** construção de gráficos e visualizações de métricas.
-
-### Desenvolvimento e versionamento
-
-<p>
-  <img src="https://skillicons.dev/icons?i=git,github,vscode" alt="Git, GitHub e Visual Studio Code">
-</p>
-
-- **Git:** controle de versão e gerenciamento de alterações.
-- **GitHub:** hospedagem do código e colaboração.
-- **Visual Studio Code:** ambiente de desenvolvimento.
-
-### Papel de cada tecnologia
-
-| Tecnologia | Aplicação no projeto |
-|---|---|
-| **Python** | Implementação dos módulos de monitoramento e processamento. |
-| **FastAPI** | Criação da API REST e integração entre os componentes. |
-| **SQLite** | Persistência inicial de métricas e eventos. |
-| **Pytest** | Testes unitários e de integração. |
-| **HTML5** | Estrutura da interface web. |
-| **CSS3** | Estilização e responsividade. |
-| **JavaScript** | Interatividade e comunicação com a API. |
-| **Chart.js** | Visualização gráfica das métricas. |
-| **Git e GitHub** | Controle de versão e gerenciamento do projeto. |
-
----
-
-## 🏗️ Arquitetura
-
-A aplicação será organizada em módulos independentes, responsáveis pela coleta, processamento, armazenamento, análise e visualização das informações.
-
-O objetivo dessa organização é separar as responsabilidades de cada componente, facilitando a manutenção e permitindo que novos serviços sejam adicionados futuramente.
-
-### Diagrama da arquitetura
-
-```mermaid
-flowchart TD
-    A[Serviços Monitorados]
-
-    A --> B[Módulos de Monitoramento]
-
-    B --> C[Coleta de Métricas]
-
-    C --> D[Backend - FastAPI]
-
-    D --> E[(Banco de Dados)]
-
-    D --> F[Sistema de Alertas]
-
-    F --> G[Notificações por E-mail]
-
-    E --> H[API REST]
-
-    H --> I[Frontend - Dashboard]
-
-    J[Módulo de Segurança] --> D
-```
-
-*Diagrama conceitual da arquitetura planejada. A implementação dos componentes será realizada de maneira incremental.*
+A arquitetura foi organizada em componentes independentes, separando a infraestrutura monitorada, a coleta de dados, o armazenamento, a aplicação web e os mecanismos de teste.
 
 ### Fluxo de funcionamento
 
-1. Os módulos de monitoramento verificam periodicamente os serviços cadastrados.
-2. As métricas coletadas são encaminhadas ao backend.
-3. O backend processa e organiza as informações recebidas.
-4. Os resultados são armazenados no banco de dados.
-5. O sistema de alertas avalia as métricas e identifica possíveis incidentes.
-6. Notificações são encaminhadas por e-mail conforme a classificação dos alertas.
-7. O frontend consulta a API e apresenta as informações em dashboards interativos.
+1. **Infraestrutura:** os serviços monitorados são inicializados em containers Docker.
+2. **Coleta:** o coletor Python executa sondas periódicas e obtém informações dos serviços.
+3. **Processamento:** as métricas são calculadas, normalizadas e avaliadas pelos mecanismos de monitoramento e segurança.
+4. **Persistência:** os dados são armazenados no PostgreSQL do Supabase.
+5. **Alertas:** condições operacionais e eventos suspeitos são avaliados pelo motor de alertas.
+6. **Visualização:** o painel Next.js consulta os dados e recebe atualizações por meio do Supabase Realtime.
 
-A arquitetura também permitirá que o módulo de segurança encaminhe eventos identificados para o backend, possibilitando a centralização das informações operacionais e de segurança.
+### Componentes da arquitetura
 
----
+| Componente | Responsabilidade |
+|---|---|
+| `infra/` | Ambiente Docker com os serviços monitorados e aplicações auxiliares |
+| `collector/` | Coleta, processamento de métricas, detecção de eventos e geração de alertas |
+| `supabase/` | Banco de dados, migrações, políticas de acesso e dados iniciais |
+| `web/` | Aplicação web, autenticação e dashboards |
+| `loadgen/` | Geração controlada de tráfego e simulação de falhas |
+| `docs/` | Documentação técnica, arquitetura, instalação e procedimentos operacionais |
+
+O coletor funciona independentemente do painel web. Essa separação permite executar tarefas contínuas de monitoramento sem depender do ciclo de execução de uma aplicação web.
+
+## 🚀 Funcionalidades
+
+### 1. Monitoramento de infraestrutura
+
+O coletor realiza verificações periódicas dos quatro serviços contemplados pelo projeto.
+
+| Serviço | Monitoramento |
+|---|---|
+| Web | Disponibilidade HTTP, RPS, latência, erros 4xx/5xx e conexões |
+| Database | Disponibilidade, consultas, conexões, transações, consultas lentas e recursos |
+| DNS | Resolução de nomes, tempo de resposta, falhas e volume de consultas |
+| SMTP | Disponibilidade, fila, entrega de mensagens e rejeições |
+
+A coleta utiliza diferentes mecanismos, incluindo consultas SQL, sondas de protocolo, leitura de logs estruturados e informações disponibilizadas pelos containers.
+
+### 2. Dashboard de observabilidade
+
+A aplicação web foi desenvolvida utilizando Next.js, React e TypeScript.
+
+Entre os recursos presentes na interface estão:
+
+- Autenticação de operadores.
+- Proteção de rotas por sessão.
+- Visão geral dos serviços monitorados.
+- Indicadores de disponibilidade.
+- Histórico e acompanhamento de alertas.
+- Atualizações de informações utilizando Supabase Realtime.
+- Visualização de métricas e informações operacionais.
+- Área dedicada aos mecanismos de segurança.
+- Interface adaptável a diferentes tamanhos de tela.
+
+O painel diferencia informações não disponíveis de métricas efetivamente coletadas, evitando apresentar valores fictícios como resultados reais de monitoramento.
+
+### 3. Sistema de alertas
+
+O motor de alertas avalia as condições dos serviços e identifica situações que exigem atenção.
+
+O sistema utiliza regras de avaliação, níveis de severidade e mecanismos de histerese para reduzir oscilações desnecessárias nos estados dos alertas.
+
+| Nível | Significado |
+|---|---|
+| 🟢 Verde | Condição normal |
+| 🟡 Amarelo | Situação de atenção |
+| 🔴 Vermelho | Condição crítica |
+
+O mecanismo também contempla notificações por e-mail, controle de intervalos de reenvio e mensagens de resolução quando uma condição crítica é normalizada.
+
+### 4. Segurança e detecção de ameaças
+
+Além da observabilidade, o DevOps Monitor possui mecanismos específicos para identificar eventos potencialmente maliciosos.
+
+| Mecanismo | Descrição |
+|---|---|
+| **Análise de tráfego** | Identifica variações incomuns no volume de requisições utilizando análise estatística e Z-Score. |
+| **Brute Force Detection** | Identifica tentativas repetidas de autenticação associadas a endereços IP e contas. |
+| **Config Watch** | Monitora alterações nos arquivos de configuração utilizando hashes SHA-256. |
+| **CVE Scanner** | Consulta a base do NVD para identificar vulnerabilidades associadas às versões dos serviços monitorados. |
+
+Os eventos identificados são registrados e podem influenciar o estado de segurança apresentado no painel.
+
+### 5. Simulação de carga e falhas
+
+O projeto conta com um gerador de cenários desenvolvido em Python, utilizado para testar o comportamento da infraestrutura e demonstrar os mecanismos de monitoramento.
+
+Cenários disponíveis:
+
+| Cenário | Finalidade |
+|---|---|
+| `normal` | Geração de tráfego convencional |
+| `spike` | Simulação de aumento repentino de requisições |
+| `bruteforce` | Simulação de tentativas repetidas de autenticação |
+| `stop_service` | Interrupção controlada de um serviço |
+| `edit_config` | Alteração temporária de um arquivo de configuração |
+| `smtp_flood` | Envio controlado de mensagens ao ambiente SMTP local |
+
+Os cenários que podem afetar a disponibilidade dos serviços exigem confirmação explícita e possuem limites de execução. Seu uso é destinado exclusivamente ao laboratório isolado do projeto.
+
+## 🛠️ Tecnologias utilizadas
+
+### Backend e coleta de dados
+
+| Tecnologia | Aplicação |
+|---|---|
+| Python 3.12 | Coletor e ferramentas auxiliares |
+| APScheduler | Agendamento dos ciclos de coleta |
+| Pydantic | Configuração e validação de dados |
+| Psycopg 3 | Comunicação com PostgreSQL |
+| dnspython | Consultas e monitoramento DNS |
+| icmplib | Verificações de disponibilidade via ICMP |
+| Docker SDK | Consulta controlada de estatísticas dos containers |
+| PyYAML | Configuração do coletor |
+
+### Frontend
+
+| Tecnologia | Aplicação |
+|---|---|
+| Next.js 15 | Framework da aplicação web |
+| React 19 | Construção dos componentes |
+| TypeScript | Tipagem estática |
+| Tailwind CSS 4 | Estilização da interface |
+| Supabase SSR | Autenticação e gerenciamento de sessões |
+| Vitest | Testes unitários |
+| Playwright | Testes end-to-end |
+
+### Infraestrutura e armazenamento
+
+- Docker e Docker Compose.
+- Nginx.
+- PostgreSQL 16.
+- CoreDNS.
+- Postfix.
+- MailHog.
+- Supabase (PostgreSQL, Auth e Realtime).
+- API do NVD (National Vulnerability Database).
 
 ## 📂 Estrutura do projeto
-
-A organização do repositório foi planejada para separar os principais componentes da aplicação.
 
 ```text
 DevOps-Monitor/
 │
-├── backend/
-│   └── app/
-│       ├── api/
-│       │   └── endpoints/
-│       ├── core/
-│       ├── models/
-│       ├── schemas/
-│       └── services/
+├── collector/                  # Coletor e mecanismos de monitoramento
+│   ├── src/monitor/
+│   │   ├── probes/             # Sondas dos serviços
+│   │   ├── alerts/             # Motor e notificações de alertas
+│   │   ├── security/            # Detectores de segurança
+│   │   ├── main.py
+│   │   ├── pipeline.py
+│   │   ├── model.py
+│   │   ├── store.py
+│   │   ├── calc.py
+│   │   └── config.py
+│   ├── tests/                  # Testes automatizados
+│   ├── Dockerfile
+│   └── pyproject.toml
 │
-├── frontend/
-│   ├── assets/
-│   │   └── images/
-│   ├── css/
-│   │   ├── style.css
-│   │   └── dashboard.css
-│   ├── js/
-│   │   ├── app.js
-│   │   ├── dashboard.js
-│   │   ├── charts.js
-│   │   └── api.js
-│   └── index.html
+├── web/                        # Aplicação Next.js
+│   ├── app/
+│   │   ├── login/              # Autenticação
+│   │   └── (dash)/             # Área protegida do painel
+│   ├── components/             # Componentes da interface
+│   ├── lib/                    # Integrações e utilitários
+│   ├── e2e/                    # Testes end-to-end
+│   └── package.json
 │
-├── monitoramento/
-│   ├── web/
-│   ├── database/
-│   ├── dns/
-│   ├── smtp/
-│   └── utils/
+├── frontend/                   # Protótipo visual anterior
 │
-├── alertas/
+├── infra/                      # Serviços do laboratório
+│   ├── nginx/
+│   ├── demo-app/
+│   ├── postgres/
+│   ├── coredns/
+│   ├── postfix/
+│   └── docker_stats_proxy/
 │
-├── seguranca/
+├── loadgen/                    # Gerador de carga e falhas
+│   ├── src/loadgen/
+│   │   └── scenarios/
+│   ├── tests/
+│   └── pyproject.toml
 │
-├── testes/
+├── supabase/                   # Banco e configurações
+│   ├── migrations/
+│   ├── tests/
+│   ├── config.toml
+│   └── seed.sql
 │
-├── docs/
+├── docs/                       # Documentação técnica
+│   ├── sdd/
+│   ├── runbooks/
+│   ├── playbooks/
+│   ├── arquitetura.md
+│   ├── instalacao.md
+│   ├── testes.md
+│   └── demo-roteiro.md
 │
-├── dados/
-│
+├── docker-compose.yml
 ├── .env.example
 ├── .gitignore
-├── README.md
-└── requirements.txt
+└── README.md
 ```
 
-*Estrutura de referência da arquitetura planejada. Os diretórios e módulos serão preenchidos conforme as etapas de implementação forem concluídas.*
+**Observação:** `frontend/` contém o protótipo visual anterior. A aplicação web principal e utilizada na arquitetura atual está em `web/`.
 
----
-
-## 🚀 Instalação
+## ⚙️ Instalação e execução
 
 ### Pré-requisitos
 
-Antes de iniciar, verifique se o ambiente possui:
+- Docker Engine.
+- Docker Compose v2.
+- Python 3.12.
+- `uv` (para execução local do coletor e gerador de carga).
+- Node.js 22 ou superior.
+- pnpm 11 ou superior.
+- Projeto Supabase configurado, para persistência e autenticação completas.
 
-- Python 3.10 ou superior.
-- Git instalado.
-- Visual Studio Code ou outro editor de sua preferência.
-
-### 1. Clone o repositório
+### 1. Clonar o repositório
 
 ```bash
 git clone https://github.com/Matheus-Nunes223/DevOps-Monitor.git
-```
 
-### 2. Entre na pasta do projeto
-
-```bash
 cd DevOps-Monitor
 ```
 
-### 3. Crie um ambiente virtual
+### 2. Configurar as variáveis de ambiente
 
-No Linux:
-
-```bash
-python3 -m venv .venv
-```
-
-### 4. Ative o ambiente virtual
+Na raiz do projeto:
 
 ```bash
-source .venv/bin/activate
+cp .env.example .env
 ```
 
-### 5. Instale as dependências
+Configure as variáveis necessárias, principalmente:
+
+- `SUPABASE_DB_URL`: conexão do coletor com o banco do Supabase.
+- `LAB_DB_URL`: conexão com o PostgreSQL do laboratório.
+- `NVD_API_KEY`: chave opcional para consultas à API do NVD.
+
+Para o painel web:
 
 ```bash
-python -m pip install -r requirements.txt
+cd web
+
+cp .env.example .env.local
 ```
 
-### 6. Execute o frontend
+Configure:
 
-Atualmente, o frontend possui dados demonstrativos para permitir a navegação e visualização dos dashboards enquanto o backend está em desenvolvimento.
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+```
 
-Para executá-lo localmente:
+Também é aceita a chave legada `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+
+**Importante:** nunca exponha `SUPABASE_SERVICE_ROLE_KEY` no frontend, em variáveis `NEXT_PUBLIC_*` ou no repositório.
+
+### 3. Inicializar a infraestrutura
+
+Na raiz do projeto:
 
 ```bash
-python3 -m http.server 8000 --directory frontend
+docker compose up --build -d
 ```
 
-Acesse a aplicação pelo navegador:
+Verifique os containers:
+
+```bash
+docker compose ps
+```
+
+Principais endereços locais:
+
+| Serviço | Endereço |
+|---|---|
+| Aplicação Web de demonstração | http://localhost:8080 |
+| Interface MailHog | http://localhost:8025 |
+| Relay SMTP | `127.0.0.1:2525` |
+| CoreDNS | `127.0.0.1:1053` |
+
+O PostgreSQL do laboratório não possui porta publicada diretamente no host.
+
+### 4. Executar o dashboard
+
+Dentro do diretório `web/`:
+
+```bash
+pnpm install --frozen-lockfile
+
+pnpm dev
+```
+
+Acesse:
 
 ```text
-http://localhost:8000
+http://localhost:3000
 ```
 
-> **Nota:** a interface já possui estrutura de integração preparada para a futura API. Os dados apresentados no modo demonstrativo não representam métricas coletadas de serviços reais. A execução completa da plataforma dependerá da implementação e integração dos módulos de backend, monitoramento, armazenamento e alertas.
+A autenticação real depende da configuração do Supabase Auth, das URLs de redirecionamento e da criação de um usuário de operador.
 
----
+### 5. Executar o coletor localmente
 
-## 🗺️ Roadmap
+Com Python 3.12, `uv`, infraestrutura e banco configurados:
 
-O desenvolvimento será dividido em etapas para permitir a implementação e validação progressiva dos componentes.
+```bash
+cd collector
 
-### Estrutura e interface
+uv sync --dev
 
-- [x] Criar o repositório no GitHub.
-- [x] Definir a arquitetura inicial do projeto.
-- [x] Configurar a estrutura inicial de diretórios.
-- [x] Desenvolver a interface principal da plataforma.
-- [x] Implementar os dashboards demonstrativos.
-- [x] Implementar a navegação entre as áreas da aplicação.
-- [x] Preparar a estrutura de integração com a API.
+uv run pytest
 
-### Backend e persistência
+uv run devops-monitor
+```
 
-- [ ] Implementar a estrutura do backend com FastAPI.
-- [ ] Configurar o banco de dados.
-- [ ] Desenvolver os modelos de dados.
-- [ ] Implementar os endpoints da API REST.
-- [ ] Integrar frontend e backend.
+A execução integrada requer as variáveis de conexão com o Supabase e com o PostgreSQL do laboratório.
 
-### Monitoramento
+### 6. Executar o gerador de cenários
 
-- [ ] Implementar monitoramento HTTP/HTTPS.
-- [ ] Implementar monitoramento de bancos de dados.
-- [ ] Implementar monitoramento DNS.
-- [ ] Implementar monitoramento SMTP.
-- [ ] Desenvolver a coleta periódica de métricas.
-- [ ] Implementar armazenamento de dados históricos.
+Na raiz do projeto:
 
-### Alertas e segurança
+```bash
+uv sync --project loadgen
 
-- [ ] Implementar a classificação de alertas.
-- [ ] Desenvolver o sistema de notificações por e-mail.
-- [ ] Implementar identificação de anomalias de tráfego.
-- [ ] Desenvolver monitoramento de falhas de autenticação.
-- [ ] Implementar detecção de alterações em configurações.
-- [ ] Incorporar monitoramento de vulnerabilidades conhecidas.
+uv run --project loadgen devops-loadgen --help
+```
 
-### Validação e documentação
+Exemplo de geração de tráfego:
 
-- [ ] Desenvolver testes automatizados.
-- [ ] Realizar testes de integração.
-- [ ] Documentar a arquitetura da aplicação.
-- [ ] Elaborar guias de instalação e configuração.
-- [ ] Desenvolver runbooks e playbooks de incidentes.
-- [ ] Realizar validação geral da plataforma.
-- [ ] Preparar a apresentação final.
+```bash
+uv run --project loadgen devops-loadgen normal --requests 60 --rate 2
+```
 
-*O roadmap será atualizado conforme o desenvolvimento avançar.*
+Para simular uma interrupção controlada:
 
----
+```bash
+uv run --project loadgen devops-loadgen stop_service --service nginx --duration 10 --confirm-fault
+```
+
+Consulte [`loadgen/README.md`](loadgen/README.md) antes de executar os cenários que modificam ou interrompem serviços.
+
+### Encerrando o ambiente
+
+Na raiz do projeto:
+
+```bash
+docker compose down
+```
+
+Para remover também os volumes persistentes do laboratório:
+
+```bash
+docker compose down -v
+```
+
+Atenção: o segundo comando remove os dados persistidos nos volumes do ambiente local.
 
 ## 🧪 Testes e validação
 
-A aplicação contará com testes automatizados para verificar o funcionamento dos diferentes componentes.
+O projeto possui testes automatizados distribuídos entre seus principais componentes.
 
-A validação deverá considerar:
+| Camada | Ferramenta | Finalidade |
+|---|---|---|
+| Coletor | Pytest | Validar cálculos, sondas, parsers, persistência e alertas |
+| Segurança | Pytest | Validar detectores de eventos e mecanismos de proteção |
+| Gerador de carga | Pytest | Validar cenários e limites de execução |
+| Frontend | Vitest | Validar componentes e comportamentos |
+| Interface | Playwright | Validar navegação, responsividade e fluxos da aplicação |
+| Banco de dados | pgTAP | Validar políticas RLS e funções do banco |
+| Qualidade | ESLint e TypeScript | Verificar padrões de código e tipagem |
+| Build | Next.js | Verificar a compilação da aplicação |
 
-- Funcionamento dos módulos de monitoramento.
-- Disponibilidade e tempo de resposta dos serviços.
-- Processamento e armazenamento de métricas.
-- Comunicação entre frontend e backend.
-- Funcionamento dos endpoints da API.
-- Classificação e geração de alertas.
-- Envio de notificações por e-mail.
-- Identificação de eventos de segurança.
+Para executar os testes:
 
-Os testes serão desenvolvidos utilizando **Pytest**, contemplando testes unitários e de integração.
+```bash
+# Coletor
+cd collector
+uv run pytest
+```
 
----
+```bash
+# Gerador de cenários
+uv run --project loadgen pytest
+```
+
+```bash
+# Frontend
+cd web
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm test:e2e
+pnpm build
+```
+
+Os testes integrados dependem da disponibilidade do Docker, das migrações do Supabase e da configuração dos serviços externos. A existência de testes automatizados não representa, por si só, uma homologação completa do ambiente de produção.
+
+Mais informações estão disponíveis em [`docs/testes.md`](docs/testes.md).
+
+## 🔐 Segurança
+
+A segurança é um dos pilares do DevOps Monitor.
+
+Entre as medidas contempladas na arquitetura estão:
+
+- Separação entre credenciais públicas e privadas.
+- Autenticação e proteção de rotas do dashboard.
+- Políticas de Row Level Security (RLS) no Supabase.
+- Restrição de portas publicadas ao loopback quando aplicável.
+- Proxy dedicado para limitar as operações disponibilizadas pela API Docker.
+- Montagem dos arquivos de configuração monitorados em modo somente leitura.
+- Limites de execução e confirmação explícita nos cenários de falha.
+- Separação entre a rede dos serviços monitorados e a comunicação com a API Docker.
+- Registro e acompanhamento de eventos de segurança.
+
+O projeto foi desenvolvido para demonstração e experimentação em ambiente controlado. Sua utilização em infraestruturas de produção exige revisão adicional de segurança, configuração, disponibilidade e gerenciamento de credenciais.
 
 ## 📚 Documentação
 
-A documentação técnica será organizada no diretório `docs/`, contemplando os materiais necessários para instalação, operação e manutenção da plataforma.
+A documentação complementar está organizada no diretório `docs/`.
 
-Entre os documentos previstos estão:
+| Documento | Conteúdo |
+|---|---|
+| [`docs/arquitetura.md`](docs/arquitetura.md) | Arquitetura e comunicação entre componentes |
+| [`docs/instalacao.md`](docs/instalacao.md) | Instalação e configuração do laboratório |
+| [`docs/testes.md`](docs/testes.md) | Estratégia de testes e validação |
+| [`docs/demo-roteiro.md`](docs/demo-roteiro.md) | Roteiro para demonstração do projeto |
+| [`docs/sdd/`](docs/sdd/) | Especificações, planejamento e desenvolvimento por funcionalidades |
+| [`docs/runbooks/`](docs/runbooks/) | Procedimentos operacionais dos serviços |
+| [`docs/playbooks/`](docs/playbooks/) | Procedimentos de resposta a incidentes |
+| [`collector/README.md`](collector/README.md) | Configuração e execução do coletor |
+| [`web/README.md`](web/README.md) | Configuração e execução do dashboard |
+| [`loadgen/README.md`](loadgen/README.md) | Cenários de carga e falhas |
 
-- **Arquitetura:** descrição dos componentes e da comunicação entre os módulos.
-- **Instalação:** instruções para configuração e execução da aplicação.
-- **Runbooks:** procedimentos operacionais para acompanhamento e resolução de problemas.
-- **Playbooks:** orientações para identificação e resposta a incidentes.
-- **Monitoramento:** documentação dos serviços, métricas e parâmetros utilizados.
+## 👥 Equipe de desenvolvimento
 
----
+Projeto desenvolvido por:
 
-## 🎓 Contexto acadêmico
+| Integrante | Participação |
+|---|---|
+| **Matheus Nunes** | Desenvolvimento |
+| **João Guilherme** | Desenvolvimento |
+| **Bruna Cayres** | Desenvolvimento |
 
-O DevOps Monitor é um projeto acadêmico desenvolvido como parte do trabalho final da disciplina **Redes de Computadores e Internet**, do Instituto Brasileiro de Ensino, Desenvolvimento e Pesquisa (IDP).
-
-**Instituição:** Instituto Brasileiro de Ensino, Desenvolvimento e Pesquisa — IDP  
+**Instituição:** Instituto Brasileiro de Ensino, Desenvolvimento e Pesquisa (IDP)  
+**Curso:** Engenharia de Software  
 **Disciplina:** Redes de Computadores e Internet  
-**Professora:** Lorena Borges  
-**Projeto:** Trabalho Final — Plataforma de Monitoramento para DevOps
-
-O desenvolvimento busca aplicar conhecimentos relacionados a:
-
-- Redes de computadores e protocolos de comunicação.
-- Desenvolvimento de aplicações web.
-- Monitoramento de infraestrutura.
-- Segurança de redes.
-- Armazenamento e análise de métricas.
-- Observabilidade e práticas DevOps.
+**Natureza:** Projeto acadêmico
 
 ---
 
-## 👨‍💻 Desenvolvedor
-
-**Matheus Nunes**
-
-Estudante de Engenharia de Software, interessado em desenvolvimento de software, análise de dados, infraestrutura e segurança da informação.
-
-[![GitHub](https://img.shields.io/badge/GitHub-Matheus--Nunes223-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Matheus-Nunes223)
-
----
-
-### ◈ DevOps Monitor
-
-**MONITORAMENTO INTELIGENTE. INFRAESTRUTURA CONFIÁVEL.**
-
-*Transformando métricas em visibilidade. Visibilidade em decisões.*
+<p align="center">
+  **DevOps Monitor**
+  <br />
+  Monitoramento, observabilidade e segurança em um único ambiente.
+  <br /><br />
+  Desenvolvido como projeto acadêmico, integrando conceitos de redes de computadores, infraestrutura, desenvolvimento de software e segurança da informação.
+</p>
